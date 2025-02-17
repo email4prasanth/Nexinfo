@@ -58,8 +58,10 @@ sudo systemctl status mysql
 ```sh
 sudo mysql -u root -p (press enter as password is not set)
 
-CREATE USER 'nexinfo'@'10.1.15.53' IDENTIFIED BY 'N***1!';
-GRANT ALL PRIVILEGES ON *.* TO 'nexinfo'@'10.1.15.53' WITH GRANT OPTION;
+SELECT user, host FROM mysql.user; # If nexinfo is restricted to a specific host (like localhost or 10.1.15.53)
+DROP USER 'nexinfo'@'10.1.15.53';
+CREATE USER 'nexinfo'@'%' IDENTIFIED BY 'Ne***@0**1!';
+GRANT ALL PRIVILEGES ON *.* TO 'nexinfo'@'%' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 
 exit
@@ -115,3 +117,5 @@ INSERT INTO users (name, email) VALUES
 
 ALTER USER 'nexinfo'@'%' IDENTIFIED WITH mysql_native_password BY 'Nexinfo@00291!';
 FLUSH PRIVILEGES;
+
+
